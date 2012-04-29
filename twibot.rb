@@ -27,13 +27,20 @@ class Twibot
     new_tweets_counter
   end
 
+  def do
+    t = Tweet.last
+    t.text = "<script>alert();</script>"
+    t.save
+  end
+
 end
 
 bot = Twibot.new
-loop do
-  puts "Checking for new tweets"
-  counter = bot.check_for_new_tweets
-  puts "Found #{counter} new tweets"
-  sleep(10)
-end
+bot.do
+# loop do
+#   puts "Checking for new tweets"
+#   counter = bot.check_for_new_tweets
+#   puts "Found #{counter} new tweets"
+#   sleep(10)
+# end
 

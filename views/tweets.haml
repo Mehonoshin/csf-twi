@@ -1,6 +1,13 @@
 %h2= "Все твиты ВГУ ФКН"
 - @tweets.each do |tweet|
   %blockquote
-    %p= tweet.text
+    %p= h tweet.text
     %small
-      = link_to tweet.username, "http://twitter.com/#{tweet.username}"
+      = h link_to tweet.username, "http://twitter.com/#{tweet.username}"
+
+.pagination
+  %ul
+    - if @total_tweets > PERPAGE
+      - 1.upto((@total_tweets / PERPAGE).round + 1) do |i|
+        %li
+          = link_to i, "/?page=#{i}"

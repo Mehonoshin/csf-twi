@@ -7,12 +7,16 @@ require './config/db.rb'
 
 require './helpers'
 
+PERPAGE = 15
+
 before do
   @request = request
 end
 
 get '/' do
-  @tweets = Tweet.all
+  page = params[:page]
+  @tweets = Tweet.paginate({order: :status_id.asc, per_page: PERPAGE, page: page})
+  @total_tweets = Tweet.all.count
   haml :tweets
 end
 
