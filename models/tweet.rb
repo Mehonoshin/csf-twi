@@ -1,6 +1,16 @@
-class Tweet
+class Status
   include MongoMapper::Document
-  key :text, :string
-  key :username, :string
-  key :status_id, :string
+
+  key :text, String
+  key :username, String
+  key :status_id, String
+
+  after_create :inc_feed_counter
+
+  public
+    def inc_feed_counter
+      Feed.where(username: self.username).first.inc_tweets_counter
+    end
+
+  private
 end
