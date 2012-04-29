@@ -1,0 +1,6 @@
+%h2= "Все твиты ВГУ ФКН"
+- @tweets.each do |tweet|
+  %blockquote
+    %p= tweet.text
+    %small
+      = link_to tweet.username, "http://twitter.com/#{tweet.username}"

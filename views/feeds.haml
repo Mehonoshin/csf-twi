@@ -1,0 +1,15 @@
+%h1
+  Все твиттеры ВГУ ФКН
+
+.b-feeds
+  %table
+    %tr
+      %th= "Юзернейм"
+      %th= "Количество твитов"
+    - @feeds.each do |feed|
+      %tr
+        %td
+          %a{href: "http://twitter.com/#{feed.username}"}
+            = feed.username
+        %td
+          = feed.tweets_counter

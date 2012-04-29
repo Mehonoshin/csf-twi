@@ -15,48 +15,25 @@ class Twibot
   end
 
   def check_for_new_tweets
+    new_tweets_counter = 0
     @feeds.each do |feed|
       Twitter.user_timeline(feed.username).each do |tweet|
         if Tweet.where(status_id: tweet.id.to_s).first.nil?
           Tweet.create(text: tweet.text, status_id: tweet.id.to_s, username: feed.username)
+          new_tweets_counter += 1
         end
       end
     end
+    new_tweets_counter
   end
 
 end
 
-# Twibot.new.check_for_new_tweets
-# Tweet.all.each { |state| puts tweet.text }
-# puts Status.first.to_json
+bot = Twibot.new
+loop do
+  puts "Checking for new tweets"
+  counter = bot.check_for_new_tweets
+  puts "Found #{counter} new tweets"
+  sleep(10)
+end
 
-# def add_users
-#   usernames = ["stasik_mexx", "antonylancelot"]
-#   usernames.each do |username|
-#     if Feed.where(username: username).first.nil?
-#       feed = Feed.create!(username: username)
-#     end
-#   end
-# end
-
-# def list_users
-#   Feed.all.each do |user|
-#     puts user.username
-#   end
-# end
-
-# def check_for_new_tweets
-#   Twitter.user_timeline("stasik_mexx").each do |tweet|
-#     puts tweet.to_hash
-#   end
-# end
-
-# def clear_feeds_list
-#   Feed.all.each { |user| user.destroy }
-# end
-
-# add_users
-# list_users
-# check_for_new_tweets
-# clear_feeds_list
-#

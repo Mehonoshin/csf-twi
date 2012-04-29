@@ -55,6 +55,7 @@ DEPENDENCIES
   bson_ext
   haml
   mongo_mapper
+  rack
   shotgun
   sinatra
   thin

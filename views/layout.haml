@@ -1,0 +1,31 @@
+!!! 5
+%html(lang="en")
+  %head
+    %title
+      Твиттеры ВГУ ФКН
+    %link{:rel => 'stylesheet', :href => 'css/bootstrap.min.css', :type => "text/css"}
+    :css
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    %link{:rel => 'stylesheet', :href => 'css/bootstrap-responsive.min.css', :type => "text/css"}
+
+  %body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          %a{:href => "/", :class => "brand"}= "Твиттеры ВГУ ФКН"
+          .nav-collapse
+            %ul.nav
+              %li{:class => @request.path == "/" ? "active" : ""}
+                %a{:href => "/"}= "Твиты"
+              %li{:class => @request.path == "/twiple" ? "active" : ""}
+                %a{:href => "/twiple", :class => ""}= "Люди"
+    .container
+      - unless @message.nil?
+        .hero-unit
+          = @message
+      .row
+        .span12
+          = yield
