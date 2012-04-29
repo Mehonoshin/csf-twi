@@ -1,7 +1,12 @@
-%h1
-  Все твиттеры ВГУ ФКН
-
 .b-feeds
+  %h1
+    Все твиттеры ВГУ ФКН
+
+  %form{class: "well form-search", action: "add", method: "post"}
+    %input{type: "text", class: "input-medium search-query", name: "username"}
+    %button{type: "submit", class: "btn"}
+      Добавить
+
   %table
     %tr
       %th= "Юзернейм"

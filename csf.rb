@@ -24,3 +24,15 @@ get '/twiple' do
   @feeds = Feed.all
   haml :feeds
 end
+
+post '/add' do
+  username = params[:username]
+  username = username.gsub("http://twitter.com/", "")
+  username = username.gsub("http://twitter.com/\#!/", "")
+  username = username.gsub("https://twitter.com/", "")
+  username = username.gsub("https://twitter.com/\#!/", "")
+
+  Feed.create!(username: username)
+  redirect "/twiple"
+end
+
