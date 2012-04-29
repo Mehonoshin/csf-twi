@@ -4,6 +4,7 @@ class Tweet
   key :text, String
   key :username, String
   key :status_id, String
+  key :created_at, Time
 
   after_create :inc_feed_counter
 

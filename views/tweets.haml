@@ -3,11 +3,11 @@
   %blockquote
     %p= h tweet.text
     %small
-      = h link_to tweet.username, "http://twitter.com/#{tweet.username}"
+      = link_to h(tweet.username), "http://twitter.com/#{h(tweet.username)}"
 
 .pagination
   %ul
     - if @total_tweets > PERPAGE
       - 1.upto((@total_tweets / PERPAGE).round + 1) do |i|
-        %li
+        %li{class: i.to_s == @page ? "active" : ""}
           = link_to i, "/?page=#{i}"

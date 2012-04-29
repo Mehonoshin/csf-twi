@@ -1,8 +1,7 @@
 helpers do
-  require "cgi"
 
   def link_to(string, path)
-    "<a href=#{path}>#{string}</a>"
+    "<a href='#{path}'>#{string}</a>"
   end
 
   def h(string)

@@ -2,6 +2,7 @@ require "twitter"
 require "mongo_mapper"
 require "./models/feed"
 require "./models/tweet"
+require "time"
 
 class Twibot
 
@@ -19,7 +20,7 @@ class Twibot
     @feeds.each do |feed|
       Twitter.user_timeline(feed.username).each do |tweet|
         if Tweet.where(status_id: tweet.id.to_s).first.nil?
-          Tweet.create(text: tweet.text, status_id: tweet.id.to_s, username: feed.username)
+          Tweet.create(text: tweet.text, status_id: tweet.id.to_s, username: feed.username, created_at: tweet.created_at)
           new_tweets_counter += 1
         end
       end
@@ -28,19 +29,16 @@ class Twibot
   end
 
   def do
-    t = Tweet.last
-    t.text = "<script>alert();</script>"
-    t.save
+    Tweet.all.each { |tweet| tweet.destroy }
   end
 
 end
 
 bot = Twibot.new
-bot.do
-# loop do
-#   puts "Checking for new tweets"
-#   counter = bot.check_for_new_tweets
-#   puts "Found #{counter} new tweets"
-#   sleep(10)
-# end
+loop do
+  puts "Checking for new tweets"
+  counter = bot.check_for_new_tweets
+  puts "Found #{counter} new tweets"
+  sleep(10)
+end
 

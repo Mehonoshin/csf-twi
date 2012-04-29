@@ -14,8 +14,8 @@ before do
 end
 
 get '/' do
-  page = params[:page]
-  @tweets = Tweet.paginate({order: :status_id.asc, per_page: PERPAGE, page: page})
+  @page = params[:page] || "1"
+  @tweets = Tweet.paginate({order: :created_at.desc, per_page: PERPAGE, page: @page})
   @total_tweets = Tweet.all.count
   haml :tweets
 end
