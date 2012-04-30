@@ -7,6 +7,7 @@ require './config/db.rb'
 require './helpers'
 
 class Csf < Sinatra::Base
+  helpers Csfhelpers
 
   PERPAGE = 15
 

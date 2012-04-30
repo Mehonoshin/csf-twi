@@ -1,5 +1,4 @@
-helpers do
-
+module Csfhelpers
   def link_to(string, path)
     "<a href='#{path}'>#{string}</a>"
   end
