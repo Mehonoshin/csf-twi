@@ -5,11 +5,12 @@ require './models/feed'
 require './models/tweet'
 require './config/db.rb'
 require './helpers'
+require 'will_paginate'
+require 'will_paginate/view_helpers/sinatra'
 
 class Csf < Sinatra::Base
   helpers Csfhelpers
-
-  PERPAGE = 15
+  helpers WillPaginate::Sinatra::Helpers
 
   before do
     @request = request
@@ -17,8 +18,7 @@ class Csf < Sinatra::Base
 
   get '/' do
     @page = params[:page] || "1"
-    @tweets = Tweet.paginate({order: :created_at.desc, per_page: PERPAGE, page: @page})
-    @total_tweets = Tweet.all.count
+    @tweets = Tweet.sort(:created_at.desc).paginate(page: params[:page], per_page: 10)
     haml :tweets
   end
 

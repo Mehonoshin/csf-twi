@@ -1,3 +1,23 @@
 .b-feeds td {
   padding: 10px;
 }
+.pagination em {
+  float: left;
+  padding: 0 14px;
+  line-height: 34px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  border-left-width: 0;
+}
+
+span.disabled {
+  float: left;
+  padding: 0 14px;
+  line-height: 34px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+}
+
+a.previous_page {
+  border: 1px solid #ddd;
+}
