@@ -4,46 +4,49 @@ require 'mongo_mapper'
 require './models/feed'
 require './models/tweet'
 require './config/db.rb'
-
 require './helpers'
 
-PERPAGE = 15
+class Csf < Sinatra::Base
 
-before do
-  @request = request
-end
+  PERPAGE = 15
 
-get '/' do
-  @page = params[:page] || "1"
-  @tweets = Tweet.paginate({order: :created_at.desc, per_page: PERPAGE, page: @page})
-  @total_tweets = Tweet.all.count
-  haml :tweets
-end
+  before do
+    @request = request
+  end
 
-get '/twiple' do
-  @feeds = Feed.all
-  haml :feeds
-end
+  get '/' do
+    @page = params[:page] || "1"
+    @tweets = Tweet.paginate({order: :created_at.desc, per_page: PERPAGE, page: @page})
+    @total_tweets = Tweet.all.count
+    haml :tweets
+  end
 
-get '/twiple/edit' do
-  @feeds = Feed.all
-  haml :edit_feeds
-end
+  get '/twiple' do
+    @feeds = Feed.all
+    haml :feeds
+  end
 
-# TODO: Костыль, переделать, чтобы удаление было через метод DELETE
-get '/twiple/:username' do
-  Feed.where(username: params[:username]).first.destroy
-  redirect '/twiple/edit'
-end
+  get '/twiple/edit' do
+    @feeds = Feed.all
+    haml :edit_feeds
+  end
 
-post '/add' do
-  username = params[:username]
-  username = username.gsub("http://twitter.com/", "")
-  username = username.gsub("http://twitter.com/\#!/", "")
-  username = username.gsub("https://twitter.com/", "")
-  username = username.gsub("https://twitter.com/\#!/", "")
+  # TODO: Костыль, переделать, чтобы удаление было через метод DELETE
+  get '/twiple/:username' do
+    Feed.where(username: params[:username]).first.destroy
+    redirect '/twiple/edit'
+  end
 
-  Feed.create!(username: username)
-  redirect "/twiple"
+  post '/add' do
+    username = params[:username]
+    username = username.gsub("http://twitter.com/", "")
+    username = username.gsub("http://twitter.com/\#!/", "")
+    username = username.gsub("https://twitter.com/", "")
+    username = username.gsub("https://twitter.com/\#!/", "")
+
+    Feed.create!(username: username)
+    redirect "/twiple"
+  end
+
 end
 

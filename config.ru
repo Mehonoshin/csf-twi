@@ -1,0 +1,2 @@
+require './csf'
+run Csf
