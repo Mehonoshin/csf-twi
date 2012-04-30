@@ -43,4 +43,4 @@ end
 #   # re-establish activerecord connections.
 #   defined?(ActiveRecord::Base) and
 #       ActiveRecord::Base.establish_connection
-end
+# end
