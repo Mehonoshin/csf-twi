@@ -8,7 +8,7 @@ set :rvm_type, :user
 # Bundler tasks
 require 'bundler/capistrano'
 
-set :application, "csf"
+set :application, "csf-twi"
 set :repository,  "git@github.com:Mehonoshin/csf-twi.git"
 set :scm, :git
 
