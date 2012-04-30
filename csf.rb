@@ -46,7 +46,7 @@ class Csf < Sinatra::Base
     username = username.gsub("https://twitter.com/\#!/", "")
 
     Feed.create!(username: username)
-    redirect "/twiple"
+    redirect "/twiple/edit"
   end
 
 end
