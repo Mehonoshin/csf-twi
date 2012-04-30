@@ -11,12 +11,20 @@ GEM
     bson_ext (1.6.2)
       bson (~> 1.6.2)
     builder (3.0.0)
+    capistrano (2.12.0)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
     daemons (1.1.8)
     eventmachine (0.12.10)
     faraday (0.8.0)
       multipart-post (~> 1.1)
     haml (3.1.4)
+    highline (1.6.11)
     i18n (0.6.0)
+    kgio (2.7.4)
     mongo (1.6.2)
       bson (~> 1.6.2)
     mongo_mapper (0.11.1)
@@ -25,11 +33,19 @@ GEM
       plucky (~> 0.4.0)
     multi_json (1.3.2)
     multipart-post (1.1.5)
+    net-scp (1.0.4)
+      net-ssh (>= 1.99.1)
+    net-sftp (2.0.5)
+      net-ssh (>= 2.0.9)
+    net-ssh (2.3.0)
+    net-ssh-gateway (1.1.0)
+      net-ssh (>= 1.99.1)
     plucky (0.4.4)
       mongo (~> 1.5)
     rack (1.4.1)
     rack-protection (1.2.0)
       rack
+    raindrops (0.8.0)
     shotgun (0.9)
       rack (>= 1.0)
     simple_oauth (0.1.7)
@@ -47,12 +63,17 @@ GEM
       faraday (~> 0.8)
       multi_json (~> 1.3)
       simple_oauth (~> 0.1.6)
+    unicorn (4.3.1)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   bson_ext
+  capistrano
   haml
   mongo_mapper
   rack
@@ -60,3 +81,4 @@ DEPENDENCIES
   sinatra
   thin
   twitter
+  unicorn
