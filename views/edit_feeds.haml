@@ -1,0 +1,25 @@
+.b-feeds
+  %h1
+    Режим редактирования листа твиттеров
+
+  %form{class: "well form-search", action: "add", method: "post"}
+    %input{type: "text", class: "input-medium search-query", name: "username"}
+    %button{type: "submit", class: "btn"}
+      Добавить
+
+  %table
+    %tr
+      %th= "Юзернейм"
+      %th= "Количество твитов"
+      %th
+    - @feeds.each do |feed|
+      %tr
+        %td
+          %a{href: "http://twitter.com/#{feed.username}"}
+            = feed.username
+        %td
+          = feed.tweets_counter
+        %td
+          %form{action: "/twiple/#{feed.username}", method: "delete"}
+            %button{class: "btn danger"}
+              Удалить
