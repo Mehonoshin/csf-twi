@@ -1,11 +1,11 @@
 %h2= "Все твиты ВГУ ФКН"
-- @tweets.each do |tweet|
-  %blockquote
-    %p= h tweet.text
-    %small
-      = link_to h(tweet.username), "http://twitter.com/#{h(tweet.username)}"
-      опубликовано
-      = tweet.created_at.strftime('%d.%m.%Y')
+.tweets
+  - @tweets.each do |tweet|
+    %blockquote
+      %p= h tweet.text
+      %small
+        = link_to h(tweet.username), "http://twitter.com/#{h(tweet.username)}"
+        опубликовано
+        = tweet.created_at.strftime('%d.%m.%Y')
 
-.pagination
-  = will_paginate @tweets, previous_label: "< Туда", next_label: "Сюда >"
+= will_paginate @tweets, previous_label: "< Туда", next_label: "Сюда >"
