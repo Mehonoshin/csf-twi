@@ -4,6 +4,6 @@ module Csfhelpers
   end
 
   def h(string)
-    string.gsub(%r{</?[^>]+?>}, '')
+    string
   end
 end

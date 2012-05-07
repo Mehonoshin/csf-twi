@@ -41,4 +41,3 @@ loop do
   puts "Found #{counter} new tweets"
   sleep(10)
 end
-
