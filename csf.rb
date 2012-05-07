@@ -18,8 +18,12 @@ class Csf < Sinatra::Base
 
   get '/' do
     @page = params[:page] || "1"
-    @tweets = Tweet.sort(:created_at.desc).paginate(page: params[:page], per_page: 10)
-    haml :tweets
+    @tweets = Tweet.sort(:created_at.desc).paginate(page: params[:page], per_page: 20)
+    if @tweets.size.zero?
+      halt 404
+    else
+      haml :tweets
+    end
   end
 
   get '/twiple' do
