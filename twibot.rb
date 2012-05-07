@@ -2,16 +2,16 @@ require "twitter"
 require "mongo_mapper"
 require "./models/feed"
 require "./models/tweet"
+require './config/db.rb'
 require "time"
 
 class Twibot
 
-  MONGOURI = 'mongodb://localhost:27017'
-  DBNAME = "csf-twi"
-
   def initialize
-    MongoMapper.connection = Mongo::Connection.from_uri(MONGOURI)
-    MongoMapper.database = DBNAME
+    update_feeds
+  end
+
+  def update_feeds
     @feeds = Feed.all
   end
 
@@ -28,10 +28,6 @@ class Twibot
     new_tweets_counter
   end
 
-  def do
-    Tweet.all.each { |tweet| tweet.destroy }
-  end
-
 end
 
 bot = Twibot.new
@@ -39,5 +35,6 @@ loop do
   puts "Checking for new tweets"
   counter = bot.check_for_new_tweets
   puts "Found #{counter} new tweets"
+  bot.update_feeds
   sleep(10)
 end
