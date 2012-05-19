@@ -11,7 +11,9 @@ class Tweet
 
   public
     def inc_feed_counter
-      Feed.where(username: self.username).first.inc_tweets_counter
+      feed = Feed.where(username: self.username).first
+      feed = Feed.create!(username: self.username) if feed.nil?
+      feed.inc_tweets_counter
     end
 
   private

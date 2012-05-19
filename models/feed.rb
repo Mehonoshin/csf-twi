@@ -3,12 +3,18 @@ class Feed
 
   key :tweets_counter, Integer, :default => 0
   key :username, String
+  key :followed, Boolean, :default => false
 
   before_destroy :delete_relative_tweets
 
   public
     def inc_tweets_counter
       self.tweets_counter += 1
+      self.save
+    end
+
+    def follow!
+      self.followed = true
       self.save
     end
 
