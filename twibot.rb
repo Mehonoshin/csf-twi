@@ -22,7 +22,7 @@ class Twibot
   end
 
   def update_feeds
-    Feed.where(followed: false).each do |feed|
+    Feed.where(followed: nil).each do |feed|
       if Twitter.follow(feed.username)
         feed.follow!
         @api_calls += 1
