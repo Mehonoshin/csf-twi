@@ -4,6 +4,7 @@ class Feed
   key :tweets_counter, Integer, :default => 0
   key :username, String
   key :followed, Boolean, :default => false
+  key :userpic, String
 
   before_destroy :delete_relative_tweets
 

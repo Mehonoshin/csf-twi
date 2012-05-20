@@ -28,6 +28,10 @@ class Twibot
         @api_calls += 1
       end
     end
+    Feed.where(userpic: nil).each do |feed|
+      feed.userpic = Twitter.user(feed.username).profile_image_url
+      feed.save!
+    end
   end
 
   def check_for_new_tweets

@@ -4,10 +4,14 @@
 
   %table
     %tr
+      %th= "Юзерпик"
       %th= "Юзернейм"
       %th= "Количество твитов"
     - @feeds.each do |feed|
       %tr
+        %td
+          %a{href: "http://twitter.com/#{feed.username}"}
+            %img{src: feed.userpic}
         %td
           %a{href: "http://twitter.com/#{feed.username}"}
             = feed.username
