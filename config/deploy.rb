@@ -34,10 +34,15 @@ set :deploy_to, "/home/csf/#{application}"
 set :unicorn_conf, "#{deploy_to}/current/config/unicorn.rb"
 set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
 
+task :copy_settings_config, roles => :app do
+  run "cp #{deploy_to}/shared/twitter.yml #{deploy_to}/current/config/settings/twitter.yml"
+end
+before "deploy:finalize_update", :copy_settings_config
+
 # Unicorn control tasks
 namespace :deploy do
   task :restart do
-    run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -USR2 `cat #{unicorn_pid}`; else cd #{deploy_to}/current && bundle exec unicorn -Dc #{unicorn_conf} -E #{rails_env}; fi"
+    run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -QUIT `cat #{unicorn_pid}`; else cd #{deploy_to}/current && bundle exec unicorn -Dc #{unicorn_conf} -E #{rails_env}; fi"
   end
   task :start do
     run "cd #{deploy_to}/current && bundle exec unicorn -c #{unicorn_conf} -E #{rails_env} -D"
