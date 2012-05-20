@@ -12,7 +12,6 @@ test/tmp
 test/version_tmp
 tmp
 config/settings/twitter.yml
-
 # YARD artifacts
 .yardoc
 _yardoc
