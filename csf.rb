@@ -29,7 +29,7 @@ class Csf < Sinatra::Base
   end
 
   get '/twiple' do
-    @feeds = Feed.all
+    @feeds = Feed.sort(:tweets_counter.desc)
     haml :feeds
   end
 
