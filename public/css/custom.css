@@ -1,6 +1,18 @@
 .b-feeds td {
   padding: 10px;
 }
+.tweets blockquote p, .tweets blockquote small {
+  position: relative;
+  top: -3px;
+  margin-left: 50px;
+}
+.tweets img.userpic {
+  position: relative;
+  top: 40px;
+  left: 13px;
+  width: 40px;
+  height: 40px;
+}
 .pagination em {
   float: left;
   padding: 0 14px;

@@ -1,10 +1,12 @@
 class Tweet
   include MongoMapper::Document
+  belongs_to :feed
 
   key :text, String
   key :username, String
   key :status_id, String
   key :created_at, Time
+  key :feed_id
 
   before_create :sanitize_tweet, :replace_links
   after_create :inc_feed_counter

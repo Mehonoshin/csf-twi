@@ -1,5 +1,6 @@
 class Feed
   include MongoMapper::Document
+  many :tweets
 
   key :tweets_counter, Integer, :default => 0
   key :username, String
