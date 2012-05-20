@@ -38,7 +38,7 @@ task :copy_settings_config, roles => :app do
   run "mkdir #{deploy_to}/current/config/settings"
   run "cp #{deploy_to}/shared/twitter.yml #{deploy_to}/current/config/settings/twitter.yml"
 end
-before "deploy:finalize_update", :copy_settings_config
+after "deploy:create_symlink", :copy_settings_config
 
 # Unicorn control tasks
 namespace :deploy do
