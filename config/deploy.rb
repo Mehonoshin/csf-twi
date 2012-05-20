@@ -43,7 +43,7 @@ before "deploy:finalize_update", :copy_settings_config
 # Unicorn control tasks
 namespace :deploy do
   task :restart do
-    run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -USR2 `cat #{unicorn_pid}` && cd #{deploy_to}/current && bundle exec unicorn -Dc #{unicorn_conf} -E #{rails_env}; else cd #{deploy_to}/current && bundle exec unicorn -Dc #{unicorn_conf} -E #{rails_env}; fi"
+    run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -USR2 `cat #{unicorn_pid}`; else cd #{deploy_to}/current && bundle exec unicorn -Dc #{unicorn_conf} -E #{rails_env}; fi"
   end
   task :start do
     run "cd #{deploy_to}/current && bundle exec unicorn -c #{unicorn_conf} -E #{rails_env} -D"
