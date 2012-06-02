@@ -1,7 +1,8 @@
 %h2= "Все твиты ВГУ ФКН"
 .tweets
   - @tweets.each do |tweet|
-    %img{src: tweet.feed.userpic, class: "userpic"}
+    - if tweet.feed && tweet.feed.userpic.present?
+      %img{src: tweet.feed.userpic, class: "userpic"}
     %blockquote
       %p= h tweet.text
       %small

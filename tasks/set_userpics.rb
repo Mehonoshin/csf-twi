@@ -7,10 +7,8 @@ require "./lib/logger"
 require 'psych'
 require "time"
 
-Tweet.all.each do |tweet|
-  tweet.feed_id = Feed.where(username: tweet.username).last.id
-  puts tweet.username
-  puts Feed.where(username: tweet.username).last.id
-  puts tweet.feed_id
-  tweet.save!
+Feed.where(userpic: nil).each do |feed|
+  puts "#{feed.username} has no userpic"
+  feed.set_userpic!
 end
+

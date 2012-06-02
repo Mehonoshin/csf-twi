@@ -9,17 +9,22 @@ class Tweet
   key :feed_id
 
   before_create :sanitize_tweet, :replace_links
-  after_create :inc_feed_counter
+  after_create :create_feed_if_new, :inc_feed_counter
 
   public
+    def create_feed_if_new
+      if feed.nil?
+        new_feed = Feed.create!(username: self.username)
+        new_feed.follow!
+        self.feed_id = new_feed.id
+      end
+    end
+
     def inc_feed_counter
-      feed = Feed.where(username: self.username).first
-      feed = Feed.create!(username: self.username) if feed.nil?
       feed.inc_tweets_counter
     end
 
   private
-
     def sanitize_tweet
       self.text = text.gsub(%r{</?[^>]+?>}, '')
     end

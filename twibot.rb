@@ -28,17 +28,13 @@ class Twibot
         @api_calls += 1
       end
     end
-    Feed.where(userpic: nil).each do |feed|
-      feed.userpic = Twitter.user(feed.username).profile_image_url
-      feed.save!
-    end
   end
 
   def check_for_new_tweets
     new_tweets_counter = 0
     Twitter.home_timeline.each do |tweet|
       if Tweet.where(status_id: tweet.id.to_s).first.nil?
-        Feed.first(username: tweet.user.screen_name).tweets.create!(text: tweet.text, status_id: tweet.id.to_s, username: tweet.user.screen_name, created_at: tweet.created_at)
+        Tweet.create!(text: tweet.text, status_id: tweet.id.to_s, username: tweet.user.screen_name, created_at: tweet.created_at)
         new_tweets_counter += 1
       end
     end
