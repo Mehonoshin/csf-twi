@@ -6,7 +6,8 @@
     %blockquote
       %p= h tweet.text
       %small
-        = link_to h(tweet.username), "http://twitter.com/#{h(tweet.username)}"
+        %a{href: "http://twitter.com/#{h(tweet.username)}", target: "blank"}
+          = h(tweet.username)
         опубликовано
         = tweet.created_at.strftime('%d.%m.%Y')
 

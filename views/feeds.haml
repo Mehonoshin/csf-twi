@@ -10,10 +10,10 @@
     - @feeds.each do |feed|
       %tr
         %td
-          %a{href: "http://twitter.com/#{feed.username}"}
+          %a{href: "http://twitter.com/#{feed.username}", target: "blank"}
             %img{src: feed.userpic}
         %td
-          %a{href: "http://twitter.com/#{feed.username}"}
+          %a{href: "http://twitter.com/#{feed.username}", target: "blank"}
             = feed.username
         %td
           = feed.tweets_counter
