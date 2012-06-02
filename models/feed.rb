@@ -4,7 +4,6 @@ class Feed
 
   key :tweets_counter, Integer, :default => 0
   key :username, String
-  key :followed, Boolean, :default => false
   key :userpic, String
 
   before_destroy :delete_relative_tweets
@@ -16,14 +15,10 @@ class Feed
       self.save!
     end
 
-    def follow!
-      self.followed = true
-      self.save!
-    end
-
   private
     def set_userpic
       self.userpic = Twitter.user(username).profile_image_url
+      $api_calls += 1
       self.save!
     end
 

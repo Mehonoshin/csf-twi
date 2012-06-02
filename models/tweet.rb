@@ -14,14 +14,14 @@ class Tweet
   public
     def create_feed_if_new
       if feed.nil?
-        new_feed = Feed.create!(username: self.username)
-        new_feed.follow!
-        self.feed_id = new_feed.id
+        tweet_feed = Feed.where(username: self.username).first || Feed.create!(username: self.username)
+        self.feed_id = tweet_feed.id
+        self.save
       end
     end
 
     def inc_feed_counter
-      feed.inc_tweets_counter
+      Feed.where(username: self.username).last.inc_tweets_counter
     end
 
   private

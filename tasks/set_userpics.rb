@@ -11,4 +11,3 @@ Feed.where(userpic: nil).each do |feed|
   puts "#{feed.username} has no userpic"
   feed.set_userpic!
 end
-
