@@ -4,7 +4,7 @@ require 'mongo_mapper'
 require './models/feed'
 require './models/tweet'
 require './config/db.rb'
-require './helpers'
+require './helpers/helpers'
 require 'will_paginate'
 require 'will_paginate/view_helpers/sinatra'
 
