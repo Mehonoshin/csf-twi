@@ -14,7 +14,7 @@ class Twibot
 
   def check_for_new_tweets
     new_tweets_counter = 0
-    Twitter.home_timeline.each do |tweet|
+    Twitter.home_timeline.reverse!.each do |tweet|
       if Tweet.where(status_id: tweet.id.to_s).first.nil?
         Tweet.create!(text: tweet.text, status_id: tweet.id.to_s, username: tweet.user.screen_name, created_at: tweet.created_at)
         @new_tweets << tweet
@@ -31,8 +31,10 @@ class Twibot
 
   def notify_clients
     @new_tweets.each do |new_tweet|
-      push_notifiction(new_tweet.to_json)
+      message = {tweet: new_tweet.text, username: new_tweet.user.screen_name, userpic: new_tweet.user.profile_image_url, created_at: new_tweet.created_at}
+      push_notification(message.to_json)
     end
+    @new_tweets = []
   end
 
   def push_notification(data)
