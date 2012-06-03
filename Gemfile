@@ -10,5 +10,6 @@ gem "twitter"
 gem "bson_ext"
 gem "will_paginate"
 
+gem "faye"
 gem "capistrano"
 gem "unicorn"
