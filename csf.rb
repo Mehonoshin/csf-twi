@@ -33,27 +33,5 @@ class Csf < Sinatra::Base
     haml :feeds
   end
 
-  get '/twiple/edit' do
-    @feeds = Feed.all
-    haml :edit_feeds
-  end
-
-  # TODO: Костыль, переделать, чтобы удаление было через метод DELETE
-  get '/twiple/:username' do
-    Feed.where(username: params[:username]).first.destroy
-    redirect '/twiple/edit'
-  end
-
-  post '/add' do
-    username = params[:username]
-    username = username.gsub("http://twitter.com/", "")
-    username = username.gsub("http://twitter.com/\#!/", "")
-    username = username.gsub("https://twitter.com/", "")
-    username = username.gsub("https://twitter.com/\#!/", "")
-
-    Feed.create!(username: username)
-    redirect "/twiple/edit"
-  end
-
 end
 
