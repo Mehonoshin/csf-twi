@@ -14,7 +14,7 @@
     %link{ rel: 'stylesheet', href: '/css/custom.css', type: "text/css" }
     %script{ src: '/js/jquery-1.7.2.min.js', type: "text/javascript" }
     %script{ src: '/js/jquery.infinitescroll.js', type: "text/javascript" }
-    %script{ src: 'http://localhost:9292/faye.js', type: "text/javascript" }
+    %script{ src: "http://#{@request.host}:9292/faye.js", type: "text/javascript" }
     %script{ src: '/js/csf-twi.js', type: "text/javascript" }
 
   %body
