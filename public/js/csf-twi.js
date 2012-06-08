@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
-  var client = new Faye.Client('http://localhost:9292/faye');
+  var host = $('body').data("host");
+  var client = new Faye.Client('http://' + host + ':9292/faye');
 
   // Subscribe to the public channel
   var public_subscription = client.subscribe('/tweets/new', function(data) {

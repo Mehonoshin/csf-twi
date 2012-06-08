@@ -17,7 +17,7 @@
     %script{ src: "http://#{@request.host}:9292/faye.js", type: "text/javascript" }
     %script{ src: '/js/csf-twi.js', type: "text/javascript" }
 
-  %body
+  %body{"data-host" => @request.host}
     .navbar.navbar-fixed-top
       .navbar-inner
         .container
