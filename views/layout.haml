@@ -30,6 +30,11 @@
                 %a{:href => "/"}= "Твиты"
               %li{:class => @request.path == "/twiple" ? "active" : ""}
                 %a{:href => "/twiple", :class => ""}= "Люди"
+              %li
+                %a{:href => "http://twitter.com/CSFTwi", :target => "blank", :class => ""}= "Наш твиттер"
+              %li{:class => @request.path == "/about" ? "active" : ""}
+                %a{:href => "/about", :class => ""}= "О проекте"
+
     .container
       - unless @message.nil?
         .hero-unit

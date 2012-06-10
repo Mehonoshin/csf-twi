@@ -34,5 +34,9 @@ class Csf < Sinatra::Base
     haml :feeds
   end
 
+  get '/about' do
+    haml :about
+  end
+
 end
 
