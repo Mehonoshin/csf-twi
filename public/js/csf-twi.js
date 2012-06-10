@@ -1,5 +1,13 @@
 $(document).ready(function() {
 
+  function setCookie (name, value, expires, path, domain, secure) {
+      document.cookie = name + "=" + escape(value) +
+        ((expires) ? "; expires=" + expires : "") +
+        ((path) ? "; path=" + path : "") +
+        ((domain) ? "; domain=" + domain : "") +
+        ((secure) ? "; secure" : "");
+  }
+
   var host = $('body').data("host");
   var client = new Faye.Client('http://' + host + ':9292/faye');
 
@@ -19,6 +27,11 @@ $(document).ready(function() {
     jNewTweet.find('.created-date').text(date.getDate() + "." + (date.getMonth() + 1) + '.' + date.getFullYear());
     $('.new').removeClass('new');
     $('.tweets').prepend(jNewTweet.addClass('new').hide().fadeIn('slow'));
+  });
+
+  $('.about-alert .close').click(function(){
+    setCookie("about", "hidden");
+    $(this).parent().fadeOut();
   });
 
   $('.pagination').hide();

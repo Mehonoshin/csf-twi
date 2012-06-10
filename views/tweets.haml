@@ -1,4 +1,14 @@
+
 %h2= "Все твиты ВГУ ФКН"
+
+- if @request.cookies['about'] != "hidden"
+  .alert.alert-info.about-alert
+    %button{class: "close"}
+      x
+    %strong
+      Приветствуем!
+    Здесь вы сможете прочитать все твиты студентов, преподавателей и других людей связанных с ВГУ ФКН
+
 .tweet-template.hidden.tweet.new
   %img{src: "", class: "userpic"}
   %blockquote
