@@ -1,0 +1,70 @@
+.about-alert {
+  width: 900px;
+}
+
+.b-feeds td {
+  padding: 10px;
+}
+
+.tweets {
+  margin-top: 40px;
+
+  .tweet {
+    height: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  blockquote {
+    position: relative;
+    top: -40px;
+  }
+
+  blockquote p, blockquote small {
+    position: relative;
+    top: -3px;
+    margin-left: 50px;
+  }
+
+  .new {
+    background: #EBF5FC;
+  }
+
+  img.userpic {
+    position: relative;
+    left: 13px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .pagination em {
+    float: left;
+    padding: 0 14px;
+    line-height: 34px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-left-width: 0;
+  }
+
+
+}
+
+span.disabled {
+  float: left;
+  padding: 0 14px;
+  line-height: 34px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+}
+
+.gap {
+  float: left;
+  padding: 0 14px;
+  line-height: 34px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+}
+
+a.previous_page {
+  border: 1px solid #ddd;
+}
