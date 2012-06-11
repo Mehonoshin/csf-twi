@@ -10,6 +10,10 @@ gem "twitter"
 gem "bson_ext"
 gem "will_paginate"
 
+gem "sprockets"
+gem 'coffee-script'
+gem 'sass'
+
 gem "faye"
 gem "capistrano"
 gem "unicorn"
