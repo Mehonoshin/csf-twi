@@ -13,6 +13,8 @@ gem "will_paginate"
 gem "sprockets"
 gem 'coffee-script'
 gem 'sass'
+gem 'yui-compressor'
+gem 'closure-compiler'
 
 gem "faye"
 gem "capistrano"
