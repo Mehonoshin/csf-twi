@@ -1,5 +1,9 @@
+ul.nav {
+  z-index: 100;
+}
 .tweet-it-button {
   position: relative;
+  z-index: 99;
   top: 10px;
 }
 .about-alert {
