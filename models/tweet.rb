@@ -6,6 +6,7 @@ class Tweet
   key :username, String
   key :status_id, String
   key :created_at, Time
+  key :favorite, Boolean
   key :feed_id
 
   before_create :sanitize_tweet, :replace_links

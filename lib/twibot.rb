@@ -16,7 +16,7 @@ class Twibot
     new_tweets_counter = 0
     Twitter.home_timeline.reverse!.each do |tweet|
       if Tweet.where(status_id: tweet.id.to_s).first.nil?
-        Tweet.create!(text: tweet.text, status_id: tweet.id.to_s, username: tweet.user.screen_name, created_at: tweet.created_at)
+        Tweet.create!(text: tweet.text, status_id: tweet.id.to_s, username: tweet.user.screen_name, created_at: tweet.created_at, favorite: tweet.favorited)
         @new_tweets << tweet
         new_tweets_counter += 1
       end

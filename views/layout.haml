@@ -19,6 +19,8 @@
             %ul.nav
               %li{:class => @request.path == "/" ? "active" : ""}
                 %a{:href => "/"}= "Твиты"
+              %li{:class => @request.path == "/best" ? "active" : ""}
+                %a{:href => "/best"}= "Лучшее"
               %li{:class => @request.path == "/twiple" ? "active" : ""}
                 %a{:href => "/twiple", :class => ""}= "Люди"
               %li
