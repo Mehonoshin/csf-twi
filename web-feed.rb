@@ -9,7 +9,7 @@ require './helpers/helpers'
 require 'will_paginate'
 require 'will_paginate/view_helpers/sinatra'
 
-class Csf < Sinatra::Base
+class WebFeed< Sinatra::Base
   helpers Csfhelpers
   helpers WillPaginate::Sinatra::Helpers
 

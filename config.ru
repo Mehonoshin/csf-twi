@@ -1,6 +1,6 @@
 require 'bundler'
 Bundler.setup :default
-require './csf'
+require './web-feed'
 require 'sprockets'
 require 'yui/compressor'
 require 'closure-compiler'
@@ -17,5 +17,5 @@ map '/assets' do
 end
 
 map '/' do
-  run Csf
+  run WebFeed
 end
